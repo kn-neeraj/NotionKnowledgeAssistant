@@ -12,17 +12,15 @@ import os
 import openai
 from dataloader import notion_data_loader
 import test_data
-
+from document_chunks import character_splitter, test_doc_splitter
 
 print(os.environ['OPENAI_API_KEY'])
 openai.api_key = os.environ['OPENAI_API_KEY']
 
 ## Load Notion Database
-notion_data = notion_data_loader("Notion_db")
-print(len(notion_data))
+documents = notion_data_loader("Notion_db")
+print(len(documents))
 
-
-
-
-
-
+## Create Document Chunks
+doc_chunks = character_splitter(documents)
+test_doc_splitter(doc_chunks, 1) 
