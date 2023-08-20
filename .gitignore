@@ -15,3 +15,6 @@ __pycache__/
 # Ignore the packager files
 poetry.lock
 pyproject.toml
+
+# Ignore the db
+docs/
