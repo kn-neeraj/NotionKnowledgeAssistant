@@ -3,3 +3,15 @@
 .venv
 env/
 venv/
+
+# Ignore all dot files except gitignore
+.*
+!.gitignore
+
+# Ignore replit specific files
+replit.nix
+__pychache__/
+
+# Ignore the packager files
+poetry.lock
+pyproject.toml
