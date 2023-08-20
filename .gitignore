@@ -10,7 +10,7 @@ venv/
 
 # Ignore replit specific files
 replit.nix
-__pychache__/
+__pycache__/
 
 # Ignore the packager files
 poetry.lock
