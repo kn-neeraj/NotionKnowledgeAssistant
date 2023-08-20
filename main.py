@@ -1,12 +1,14 @@
 #Objective : Create a personal knowledge chatbot based on my knowledge base from Notion.
 # 0. Load the data
-# 1. Separating the big document into semantically relevant document chunks
+# 1. Separating the big document into semantically relevant document chunks that can be given to LLM prompts.
 # 2. Create embeddings from document chunks
-# 3. Store in a vector store and persist it
-# 4. Retrieve relevant chunks from the vector store basis the query
-# 5. Pass the query + relevant document chunk to LLM
-# 6. Support history to ensure subsequent prompts have context from previous
-# 7. Support UI way of doing this!
+# 3. Store the embeddings in a vector store to find semantically relevant chunks basis the query
+# 4. Use Langchain's RetrievalQA chain to : 
+#      - Get semantically relevant document chunks basis query
+#      - Construct a prompt template using document chunks + query and pass it to LLMs.
+# Pending : 
+  # - Support history to ensure subsequent prompts have context from previous
+  # - Build the UI using streamlit or gradio
 
 import os
 import openai
@@ -18,7 +20,10 @@ import prompt_templates
 from retrievalqachain import retrievalChainWithPrompt, test_qa_chain
 from langchain.chat_models import ChatOpenAI
 
-print(os.environ['OPENAI_API_KEY'])
+
+if os.environ['OPENAI_API_KEY'] == "" :
+  print("Error : Please set OPENAI_API_KEY environment variable")
+
 openai.api_key = os.environ['OPENAI_API_KEY']
 
 ## Load Notion Database
