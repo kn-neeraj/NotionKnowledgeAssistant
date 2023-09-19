@@ -8,7 +8,7 @@ from langchain.embeddings import OpenAIEmbeddings
 def store_embeddings(document_chunks, remove_prev_db=False):
   embeddings = OpenAIEmbeddings()
   persist_directory = 'docs/chroma/'
-  if remove_prev_db : 
+  if remove_prev_db:
     #remove old database files if any
     shutil.rmtree(persist_directory, ignore_errors=True)
   vectordb = Chroma.from_documents(documents=document_chunks,
@@ -26,7 +26,6 @@ def test_vectordb(vectordb, test_prompts):
     # Semantic Similarity Search
     docs = vectordb.similarity_search(test_prompt, k=3)
     print(len(docs))
-    for doc in docs : 
+    for doc in docs:
       print(doc.metadata)
       print(doc.page_content)
-

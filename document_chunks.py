@@ -37,10 +37,13 @@ def recursive_character_spliter(documents):
 
 
 def test_doc_splitter(document_chunks, page_index):
-  print("******Printing document chunk at index " + str(page_index) +
-        " ******")
-  print("Number of document chunks : ", len(document_chunks))
+  print("Number of document chunks created : ", len(document_chunks))
+  print("\n")
+  print("*** Testing document chunk at index : " + str(page_index) + " ***")
+  print("\n")
   page = document_chunks[page_index]
-  print("page content :", page.page_content)
-  print("page metadata : ", page.metadata)
-  print("***** End resutls *******")
+  print("chunk content :", page.page_content)
+  print("\n")
+  print("chunk metadata : ", page.metadata)
+  print("\n")
+  print("*** End resutls ****")

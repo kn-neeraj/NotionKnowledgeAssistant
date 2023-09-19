@@ -1,15 +1,3 @@
-#Objective : Create a personal knowledge chatbot based on my knowledge base from Notion.
-# 0. Load the data
-# 1. Separating the big document into semantically relevant document chunks that can be given to LLM prompts.
-# 2. Create embeddings from document chunks
-# 3. Store the embeddings in a vector store to find semantically relevant chunks basis the query
-# 4. Use Langchain's RetrievalQA chain to : 
-#      - Get semantically relevant document chunks basis query
-#      - Construct a prompt template using document chunks + query and pass it to LLMs.
-# Pending : 
-  # - Support history to ensure subsequent prompts have context from previous
-  # - Build the UI using streamlit or gradio
-
 import os
 import openai
 from dataloader import notion_data_loader
@@ -20,29 +8,31 @@ import prompt_templates
 from retrievalqachain import retrievalChainWithPrompt, test_qa_chain
 from langchain.chat_models import ChatOpenAI
 
-
-if os.environ['OPENAI_API_KEY'] == "" :
+if os.environ['OPENAI_API_KEY'] == "":
   print("Error : Please set OPENAI_API_KEY environment variable")
 
 openai.api_key = os.environ['OPENAI_API_KEY']
 
-## Load Notion Database
+## Step 1 : Load Notion Database
 documents = notion_data_loader("Notion_db")
-# print(len(documents))
+print("Number of documents loaded : " + str(len(documents)))
+print("\n")
 
-## Create Document Chunks
+## Step 2 : Create Document Chunks
 doc_chunks = character_splitter(documents)
-# test_doc_splitter(doc_chunks, 1)
+test_doc_splitter(doc_chunks, 1)
+print("\n")
 
-## Create & persist embeddings. Get semantically relevant chunks basis query.
+## Step 3 : Create & persist embeddings. Get semantically relevant chunks basis your query.
 vector_db = store_embeddings(doc_chunks)
-# test_vectordb(vector_db, test_data.test_prompts)
+# Testing : Retrieve semantically relevant chunk from vector db using first test prompt.
+test_vectordb(vector_db, [test_data.test_prompts[0]])
 
-## Retrieval QA chain 
-llm  = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
-prompt_template = prompt_templates.prompt_template()
-qa_chain = retrievalChainWithPrompt(llm, vector_db, prompt_template)
+## Step 4 : Taking user's query and constructing a prompt using the retrieved documents & passing it to OpenAI LLM for response.
+
+# llm  = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
+# prompt_template = prompt_templates.prompt_template()
+# qa_chain = retrievalChainWithPrompt(llm, vector_db, prompt_template)
 
 ## QnA
-test_qa_chain(qa_chain, test_data.test_prompts[2])
-
+# test_qa_chain(qa_chain, test_data.test_prompts[2])
