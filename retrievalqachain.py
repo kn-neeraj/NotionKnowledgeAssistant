@@ -3,6 +3,7 @@
 
 from langchain.chains import RetrievalQA
 
+
 def retrievalChain(llm, vectordb):
   qa_chain = RetrievalQA.from_chain_type(llm,
                                          chain_type="stuff",
@@ -13,17 +14,19 @@ def retrievalChain(llm, vectordb):
 
 def retrievalChainWithPrompt(llm, vectordb, prompt_template):
   qa_chain = RetrievalQA.from_chain_type(
-    llm,
-    chain_type="stuff",
-    retriever=vectordb.as_retriever(),
-    return_source_documents=True,
-    chain_type_kwargs={"prompt": prompt_template})
+      llm,
+      chain_type="stuff",
+      retriever=vectordb.as_retriever(),
+      return_source_documents=True,
+      chain_type_kwargs={"prompt": prompt_template})
   return qa_chain
 
-def test_qa_chain(qa_chain, prompt):
-  print("Prompt : " + prompt)
-  result = qa_chain({"query": prompt})
-  print(result["result"])
-  # print("*** Printing Source Documents ***")
-  # for source_document in result["source_documents"]:
-  #   print(source_document)
+
+def test_qa_chain(qa_chain, prompts):
+  print("*** Testing QA bot using test prompts.***")
+  for test_prompt in prompts:
+    print("Test Prompt : " + test_prompt)
+    print("\n")
+    print("Bot Response : " + qa_chain({"query": test_prompt})["result"])
+    print("\n")
+  print("*** Finished testing QA bot with test prompts***")

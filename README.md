@@ -50,4 +50,13 @@ Fantastic! Now that we have chunks created, we need to create vector embeddings 
 4. Finally, we test it using our test prompts in `test_data.py` file. You can manually check if it is able to retrieve semantically relevant document chunks basis your test prompt.
 5. Validate : You have to try different prompts and see if the current system is able to retrieve relevant chunks or not. If not, continue to refine document spltter built in the previous Step.
 
+### Step 3 : Create & pass the prompt to LLM having user's query + top 3 retrieved document chunks from our vector database
+1. Refer to file : `retrievalqachain.py` 
+1. We are using OpenAI's Chatgpt 3.5-turbo model
+2. To construct the prompt we are using Langchain's RetrievalChainWithPrompt class.
+3. Finally, we test our complete tool by providing it with different test prompts and evaluating the output manually.
+
+
+Our bot is ready! Trained to answer questions on our private data sources. This would have been unimaginable few years back and today we can achieve it in a few 100 lines of code!  
+
 
