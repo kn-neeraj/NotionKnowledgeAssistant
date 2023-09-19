@@ -1,4 +1,0 @@
-﻿Name,text 1,text,Column
-Bagging meta-estimator (reducing variance),individual models are built separately,"equal weight is given to all models. ",https://scikit-learn.org/stable/modules/ensemble.html
-Boosting (reducing bias),each new model is influenced by he performance of those built previously,weights a model's contribution to the performance,
-,,,

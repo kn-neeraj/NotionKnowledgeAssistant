@@ -1,3 +1,0 @@
-# Product_metrics_101
-
-![product_metrics_101.jpeg](Product_metrics_101%20fe5fdf69866e422ab1a1f346a5e6dcfa/product_metrics_101.jpeg)
