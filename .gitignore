@@ -16,5 +16,9 @@ __pycache__/
 poetry.lock
 pyproject.toml
 
+# Ignore the Notion_db
+Notion_db/
+
 # Ignore the db
 docs/
+
