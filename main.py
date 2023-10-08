@@ -25,7 +25,6 @@ def save_openai_api_key():
   if gv.OPENAI_API_KEY:
     ## If User provides OpenAI API key.
     openai.api_key = gv.OPENAI_API_KEY
-    print(gv.OPENAI_API_KEY)
   else:
     ## Try from environment variable
     openai.api_key = os.environ['OPENAI_API_KEY']
