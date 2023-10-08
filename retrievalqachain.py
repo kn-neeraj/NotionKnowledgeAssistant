@@ -22,6 +22,10 @@ def retrievalChainWithPrompt(llm, vectordb, prompt_template):
   return qa_chain
 
 
+def retrieve_response(qa_chain, prompt):
+  return qa_chain({"query": prompt})
+
+
 def test_qa_chain(qa_chain, prompts):
   print("*** Testing QA bot using test prompts.***")
   for test_prompt in prompts:

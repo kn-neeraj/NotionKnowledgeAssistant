@@ -18,6 +18,7 @@ pyproject.toml
 
 # Ignore the Notion_db
 Notion_db/
+Notion_db_temp/
 
 # Ignore the db
 docs/
