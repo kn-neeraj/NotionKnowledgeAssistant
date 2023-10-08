@@ -56,6 +56,9 @@ Fantastic! Now that we have chunks created, we need to create vector embeddings 
 2. To construct the prompt we are using Langchain's RetrievalChainWithPrompt class.
 3. Finally, we test our complete tool by providing it with different test prompts and evaluating the output manually.
 
+### Dashboard using Gradio
+![Dashboard](./resources/notion_knowledge_assistant_ui.png)
+
 Our bot is ready! Trained to answer questions on our private data sources. This would have been unimaginable few years back and today we can achieve it in a few 100 lines of code!
 
 ------
